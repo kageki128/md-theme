@@ -7,6 +7,7 @@
   --color-canvas-default: #ffffff;
   --color-canvas-subtle: #f6f8fa;
   --color-canvas-inset: #f6f8fa;
+  --color-canvas-elevated: #ffffff;
   --color-fg-default: #24292f;
   --color-fg-muted: #57606a;
   --color-fg-subtle: #6e7781;
@@ -14,8 +15,12 @@
   --color-accent-emphasis: #0969da;
   --color-border-default: #d0d7de;
   --color-border-muted: #d8dee4;
-  --color-neutral-muted: rgba(175, 184, 193, 0.2);
+  --color-code-bg: rgba(175, 184, 193, 0.24);
   --color-danger-fg: #cf222e;
+  --color-mark-bg: #fff8c5;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --shadow-sm: 0 1px 2px rgba(31, 35, 40, 0.06);
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
   --font-mono: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, "Liberation Mono", monospace;
 }
@@ -172,9 +177,14 @@ strong {
 }
 
 blockquote {
-  padding: 0 1em;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0.85em 1em;
   color: var(--color-fg-muted);
-  border-left: 0.25em solid var(--color-border-default);
+  background: var(--color-canvas-subtle);
+  border-left: 0.28em solid var(--color-accent-emphasis);
+  border-radius: var(--radius-md);
+  box-shadow: inset 0 0 0 1px var(--color-border-muted);
 }
 
 blockquote > :first-child {
@@ -183,6 +193,12 @@ blockquote > :first-child {
 
 blockquote > :last-child {
   margin-bottom: 0;
+}
+
+blockquote blockquote {
+  margin: 0.7em 0 0;
+  background: var(--color-canvas-default);
+  border-left-color: var(--color-border-default);
 }
 
 ul,
@@ -254,10 +270,21 @@ table {
   display: table;
   width: 100%;
   max-width: 100%;
+  margin: 18px 0;
   border-spacing: 0;
-  border-collapse: collapse;
+  border-collapse: separate;
+  background: var(--color-canvas-elevated);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
   page-break-inside: avoid;
   break-inside: avoid;
+}
+
+table thead th {
+  background: linear-gradient(180deg, #f8fafc 0%, #f2f5f8 100%);
+  border-bottom: 1px solid var(--color-border-default);
 }
 
 table th {
@@ -266,17 +293,44 @@ table th {
 
 table th,
 table td {
-  padding: 6px 13px;
-  border: 1px solid var(--color-border-default);
+  padding: 10px 12px;
+  border-right: 1px solid var(--color-border-muted);
+  border-bottom: 1px solid var(--color-border-muted);
+  vertical-align: top;
 }
 
-table tr {
+table th:last-child,
+table td:last-child {
+  border-right: 0;
+}
+
+table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+table tbody tr {
   background-color: var(--color-canvas-default);
-  border-top: 1px solid var(--color-border-muted);
+  transition: background-color 0.15s ease-in-out;
 }
 
-table tr:nth-child(2n) {
+table tbody tr:nth-child(2n) {
+  background-color: #f8fafc;
+}
+
+table tbody tr:hover {
   background-color: var(--color-canvas-subtle);
+}
+
+@media screen and (max-width: 720px) {
+  table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  table th,
+  table td {
+    white-space: nowrap;
+  }
 }
 
 code,
@@ -291,9 +345,9 @@ code,
 tt {
   padding: 0.2em 0.4em;
   margin: 0;
-  background-color: var(--color-neutral-muted);
+  background-color: var(--color-code-bg);
   color: var(--color-fg-default);
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
 }
 
 .markdown-body :not(pre) > code,
@@ -301,16 +355,16 @@ tt {
 body :not(pre) > code,
 body :not(pre) > tt {
   color: var(--color-fg-default) !important;
-  background-color: var(--color-neutral-muted);
+  background-color: var(--color-code-bg);
 }
 
 pre {
-  padding: 16px;
+  padding: 0.7em 0.9em;
   overflow: auto;
   font-size: 85%;
   line-height: 1.45;
   background-color: var(--color-canvas-subtle);
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   page-break-inside: avoid;
   break-inside: avoid;
 }
@@ -337,14 +391,14 @@ kbd {
   background-color: var(--color-canvas-subtle);
   border: solid 1px var(--color-border-default);
   border-bottom-color: var(--color-fg-subtle);
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   box-shadow: inset 0 -1px 0 var(--color-fg-subtle);
 }
 
 mark {
   padding: 0.1em 0.2em;
-  background-color: #fff8c5;
-  border-radius: 3px;
+  background-color: var(--color-mark-bg);
+  border-radius: var(--radius-sm);
 }
 
 small {
@@ -372,7 +426,7 @@ summary {
 details {
   padding: 16px;
   border: 1px solid var(--color-border-default);
-  border-radius: 6px;
+  border-radius: var(--radius-md);
 }
 
 details > :last-child {
@@ -401,7 +455,7 @@ details > :last-child {
   padding: 12px 16px;
   margin: 16px 0;
   border-left: 0.25em solid;
-  border-radius: 6px;
+  border-radius: var(--radius-md);
 }
 
 .info {
@@ -428,12 +482,36 @@ details > :last-child {
   border-left-color: #1a7f37;
 }
 
+/* Two-column utility block for raw HTML sections in Markdown. */
+.split {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 16px 0;
+  margin: 16px 0;
+}
+
+.split > div {
+  display: table-cell;
+  vertical-align: top;
+}
+
+.split > div > :first-child {
+  margin-top: 0;
+}
+
+.split > div > :last-child {
+  margin-bottom: 0;
+}
+
 /* GitHub-style alert blocks emitted by some Markdown processors. */
 .markdown-alert {
   padding: 8px 16px;
   margin-bottom: 16px;
   color: inherit;
   border-left: 0.25em solid var(--color-border-default);
+  border-radius: var(--radius-md);
 }
 
 .markdown-alert-title {

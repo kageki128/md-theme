@@ -88,3 +88,16 @@ greet("Markdown PDF");
 <div class="success">
   <strong>Success:</strong> 成功ボックス
 </div>
+
+<div class="split">
+  <div>
+    <h4>左側エリア</h4>
+    <p>左側の内容</p>
+  </div>
+  <div>
+    <h4>右側エリア</h4>
+    <p>右側の内容</p>
+  </div>
+</div>
+
+---
