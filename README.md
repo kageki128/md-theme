@@ -1,3 +1,3 @@
 # MD Theme
 
-HackMD theme for Markdown PDF
+md theme for Markdown PDF

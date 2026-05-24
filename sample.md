@@ -10,18 +10,13 @@
 
 ###### H6 見出し
 
-通常テキスト、**太字**、*斜体*、***太字かつ斜体***、~~取り消し線~~、`inline code`、<kbd>Command</kbd> + <kbd>K</kbd>、<mark>ハイライト</mark>、H<sub>2</sub>O、E = mc<sup>2</sup>。
+通常テキスト、**太字**、*斜体*、***太字かつ斜体***、~~取り消し線~~、`inline code`、<mark>ハイライト</mark>、<kbd>Command</kbd> + <kbd>K</kbd>、H<sub>2</sub>O、E = mc<sup>2</sup>。
 
-改行を明示したい場合は、行末に半角スペースを 2 つ置きます。  
+改行を明示したい場合は、行末に半角スペースを2つ置きます。  
 この行は同じ段落内の改行として表示されます。
 
 リンク: [GitHub](https://github.com/)  
 メールアドレス: <octocat@example.com>
-
-脚注の参照です。[^note] もう 1 つの脚注も置いています。[^long-note]
-
-[^note]: これは短い脚注です。
-[^long-note]: これは少し長い脚注です。PDF 出力時に本文と脚注の文字サイズ、余白、リンクの見え方を確認できます。
 
 ![プレースホルダー画像](https://picsum.photos/seed/picsum/1920/1080)
 
@@ -78,26 +73,18 @@ greet("Markdown PDF");
 
 ---
 
-## HTML
-
-Markdown の中に HTML を直接書けるレンダラーでは、次のような要素も表示できます。
-
-<div class="note">
-  <strong>Note:</strong> 独自クラスを使った補足ボックスです。
+<div class="info">
+  <strong>Info:</strong> 情報ボックス
 </div>
 
 <div class="warning">
-  <strong>Warning:</strong> 注意喚起用のボックスです。
+  <strong>Warning:</strong> 警告ボックス
 </div>
 
-## GitHub Alert
+<div class="error">
+  <strong>Error:</strong> エラーボックス
+</div>
 
-> [!NOTE]
-> これは GitHub 形式の Note Alert です。レンダラーによっては通常の引用として表示されます。
-
-> [!TIP]
-> ちょっとしたヒントを示す Alert です。
-
-> [!WARNING]
-> 注意が必要な内容を示す Alert です。
-
+<div class="success">
+  <strong>Success:</strong> 成功ボックス
+</div>
